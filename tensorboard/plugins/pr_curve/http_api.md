@@ -63,6 +63,11 @@ Each PR data entry contains the following properties.
   is the number of thresholds used to generate PR curves.
 * **recall**: A list of recall values that each pair-wise correspond to the list
   of precision values (numbers).
+* **true_positives**: A list of true positive counts (ints).
+* **false_positives**: A list of false positive counts (ints).
+* **true_negatives**: A list of true negative counts (ints).
+* **false_negatives**: A list of false negative counts (ints).
+* **thresholds**: A list of increasing thresholds (floats from 0 to 1).
 
 Here is an example. We assume 5 thresholds for PR curves. We also assume GET
 parameters of `?tag=green/pr_curves&run=bar&run=foo`.
@@ -73,41 +78,49 @@ parameters of `?tag=green/pr_curves&run=bar&run=foo`.
     {
       "wall_time": 1503076940.949388,
       "step": 0,
-      "precision": [0.4242, 0.5, 0.6, 0.8, 1.0],
-      "recall": [1.0, 0.6, 0.42, 0.1337, 0.0]
+      "precision": [0.3333333, 0.3853211, 0.5421686, 0.75, 1.0],
+      "recall": [1.0, 0.8400000, 0.3000000, 0.0400000, 0.0],
+      "true_positives": [150, 126, 45, 6, 0],
+      "false_positives": [300, 201, 38, 2, 0],
+      "true_negatives": [0, 99, 262, 298, 300],
+      "false_negatives": [0, 24, 105, 144, 150],
+      "thresholds": [0.0, 0.25, 0.5, 0.75, 1.0],
     },
     {
       "wall_time": 1503076940.953447,
       "step": 1,
-      "precision": [0.43, 0.542, 0.642, 0.842, 1.0],
-      "recall": [1.0, 0.642, 0.4242, 0.142, 0.0]
+      "precision": [0.3333333, 0.3855421, 0.5357142, 0.4000000, 1.0],
+      "recall": [1.0, 0.8533333, 0.3000000, 0.0266666, 0.0],
+      "true_positives": [150, 128, 45, 4, 0],
+      "false_positives": [300, 204, 39, 6, 0],
+      "true_negatives": [0, 96, 261, 294, 300],
+      "false_negatives": [0, 22, 105, 146, 150],
+      "thresholds": [0.0, 0.25, 0.5, 0.75, 1.0],
     },
-    {
-      "wall_time": 1503076940.95812,
-      "step": 2,
-      "precision": [0.2, 0.4, 0.6, 0.8, 1.0],
-      "recall": [1.0, 0.8, 0.6, 0.42, 0.0]
-    }
   ],
   "foo": [
     {
       "wall_time": 1503076940.964225,
       "step": 0,
-      "precision": [0.32, 0.52, 0.62, 0.82, 1.0],
-      "recall": [1.0, 0.82, 0.52, 0.32, 0.0]
+      "precision": [0.3333333, 0.3786982, 0.5384616, 1.0, 1.0],
+      "recall": [1.0, 0.8533334, 0.28, 0.0666667, 0.0],
+      "true_positives": [75, 64, 21, 5, 0],
+      "false_positives": [150, 105, 18, 0, 0],
+      "true_negatives": [0, 45, 132, 150, 150],
+      "false_negatives": [0, 11, 54, 70, 75],
+      "thresholds": [0.0, 0.25, 0.5, 0.75, 1.0],
     },
     {
       "wall_time": 1503076940.969845,
       "step": 1,
-      "precision": [0.23, 0.35, 0.42, 0.5, 1.0],
-      "recall": [1.0, 0.86, 0.64, 0.43, 0.0]
+      "precision": [0.3333333, 0.3850932, 0.5, 0.25, 1.0],
+      "recall": [1.0, 0.8266667, 0.28, 0.0133333, 0.0],
+      "true_positives": [75, 62, 21, 1, 0],
+      "false_positives": [150, 99, 21, 3, 0],
+      "true_negatives": [0, 51, 129, 147, 150],
+      "false_negatives": [0, 13, 54, 74, 75],
+      "thresholds": [0.0, 0.25, 0.5, 0.75, 1.0],
     },
-    {
-      "wall_time": 1503076940.974917,
-      "step": 2,
-      "precision": [0.1, 0.2, 0.3, 0.4, 1.0],
-      "recall": [1.0, 0.9, 0.8, 0.7, 0.0]
-    }
   ],
 }
 ```
