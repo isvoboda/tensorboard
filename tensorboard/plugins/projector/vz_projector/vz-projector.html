@@ -292,6 +292,13 @@ limitations under the License.
       <paper-icon-button id="selectMode" alt="Bounding box selection" toggles icon="image:photo-size-select-small"></paper-icon-button>
       <paper-tooltip for="selectMode" position="bottom" animation-delay="0" fit-to-visible-bounds>Bounding box selection</paper-tooltip>
 
+      <paper-button id="saveSelection" alt="Save selections id" raise>
+        Save
+      </paper-button>
+      <paper-tooltip for="saveSelection" position="bottom" animation-delay="0" fit-to-visible-bounds>Save currently selected indices</paper-tooltip>
+      <paper-input id="saveSelectionName" label="type" value="{{selectionType}}"></paper-input>
+
+
       <paper-icon-button id="nightDayMode" alt="Enable/disable night mode" toggles icon="image:brightness-2"></paper-icon-button>
       <paper-tooltip for="nightDayMode" position="bottom" animation-delay="0" fit-to-visible-bounds>Enable/disable night mode</paper-tooltip>
 

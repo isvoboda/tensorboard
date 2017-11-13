@@ -49,7 +49,8 @@ export let ProjectorPolymer = PolymerElement({
     servingMode: String,
     projectorConfigJsonPath: String,
     pageViewLogging: Boolean,
-    eventLogging: Boolean
+    eventLogging: Boolean,
+    selectionType: String
   }
 });
 
@@ -97,6 +98,8 @@ export class Projector extends ProjectorPolymer implements
   private analyticsLogger: AnalyticsLogger;
   private eventLogging: boolean;
   private pageViewLogging: boolean;
+
+  private selectionType: String;
 
   ready() {
     logging.setDomContainer(this);
@@ -412,6 +415,31 @@ export class Projector extends ProjectorPolymer implements
           (selectModeButton as any).active ? MouseMode.AREA_SELECT :
                                              MouseMode.CAMERA_AND_CLICK_SELECT);
     });
+
+    let saveSelectionButton = this.querySelector('#saveSelection');
+    saveSelectionButton.addEventListener('click', (event) => {
+      // console.log(this.selectionType);
+      // console.log(this.selectedPointIndices)
+      if (this.selectedPointIndices.length > 0) {
+        let blob = new Blob([this.selectedPointIndices], { type: 'text/plain' });
+        let textFile = window.URL.createObjectURL(blob);
+
+        // Force a download.
+        let a = document.createElement('a');
+        document.body.appendChild(a);
+        a.style.display = 'none';
+        a.href = textFile;
+        (a as any).download = this.selectionType;
+        a.click();
+
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(textFile);
+      }
+      else {
+        console.log("Nothing selected")
+      }
+    });
+
     let nightModeButton = this.querySelector('#nightDayMode');
     nightModeButton.addEventListener('click', () => {
       this.projectorScatterPlotAdapter.scatterPlot.setDayNightMode(
